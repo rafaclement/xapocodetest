@@ -2,4 +2,8 @@
     <string name="app_name">ReposCodingTest App</string>
     <string name="tv_title_trending_repos">Trending Github Repos</string>
     <string name="searchable_hint_trending_repos">Search</string>
+    <string name="error400">There was an error during the connection</string>
+    <string name="error500">Server error. Please contact admin</string>
+
+    <string name="base_url">https://api.github.com/</string>
 </resources>

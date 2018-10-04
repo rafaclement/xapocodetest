@@ -1,16 +1,14 @@
 package com.xapo.reposcodetest.ui.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.TextView;
 
 import com.xapo.reposcodetest.R;
-import com.xapo.reposcodetest.data.model.Repo;
+import com.xapo.reposcodetest.network.pojos.Item;
 import com.xapo.reposcodetest.ui.viewholders.RepoViewHolder;
 
 import java.util.ArrayList;
@@ -21,28 +19,38 @@ import java.util.List;
  * Created by rclement on 10/4/18.
  */
 
-public class ReposListAdapter extends BaseAdapter implements Filterable {
+public class ReposListAdapter extends RecyclerView.Adapter<RepoViewHolder> implements Filterable {
 
-    private List<Repo> mRepos;
-    private List<Repo> mReposFiltred;
+    private List<Item> mRepos;
+    private List<Item> mReposFiltred;
     private Context mContext;
     private ReposFilter mFilter;
 
-    public ReposListAdapter(List<Repo> repos, Context context) {
+    public ReposListAdapter(List<Item> repos, Context context) {
         this.mRepos = repos;
         this.mReposFiltred = (List)((ArrayList)repos).clone();
         this.mContext = context;
         getFilter();
     }
 
-    @Override
-    public int getCount() {
-        return mReposFiltred.size();
+    public List<Item> getRepos() {
+        return mRepos;
+    }
+
+    public void setRepos(List<Item> mRepos) {
+        this.mReposFiltred = (List)((ArrayList)mRepos).clone();
+        this.mRepos = mRepos;
     }
 
     @Override
-    public Object getItem(int i) {
-        return mReposFiltred.get(i);
+    public RepoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new RepoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repo_list_layout, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(RepoViewHolder holder, int position) {
+        final Item repo = mReposFiltred.get(position);
+        holder.getRepoName().setText(repo.getName());
     }
 
     @Override
@@ -51,25 +59,8 @@ public class ReposListAdapter extends BaseAdapter implements Filterable {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        final RepoViewHolder holder;
-        final Repo repo = (Repo) getItem(i);
-
-        if (view == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.item_repo_list_layout, null);
-            holder = new RepoViewHolder();
-            holder.setRepoName((TextView) view.findViewById(R.id.tv_repo_name_item_list));
-            holder.setUserName((TextView) view.findViewById(R.id.tv_user_name_item_list));
-            view.setTag(holder);
-        } else {
-            holder = (RepoViewHolder) view.getTag();
-        }
-
-        holder.getRepoName().setText("#");
-        holder.getUserName().setText(repo.getId()+"");
-
-        return view;
+    public int getItemCount() {
+        return mReposFiltred.size();
     }
 
     @Override
@@ -91,11 +82,11 @@ public class ReposListAdapter extends BaseAdapter implements Filterable {
             } else {
 
                 if (constraint!=null && constraint.length()>0) {
-                    List<Repo> tempList = new ArrayList<Repo>();
+                    List<Item> tempList = new ArrayList<Item>();
 
                     // search content in friend list
-                    for (Repo repo: mRepos) {
-                        if ((repo.getId() + "").equals(constraint)) {
+                    for (Item repo: mRepos) {
+                        if ((repo.getName()+ "").contains(constraint)) {
                             tempList.add(repo);
                         }
                     }
@@ -114,7 +105,7 @@ public class ReposListAdapter extends BaseAdapter implements Filterable {
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            mReposFiltred = (List<Repo>) results.values;
+            mReposFiltred = (List<Item>) results.values;
             notifyDataSetChanged();
         }
     }
