@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_activity">30sp</dimen>
+    <dimen name="row_text_size">20sp</dimen>
+    <dimen name="row_height">35sp</dimen>
+    <dimen name="edittext_height">50sp</dimen>
+</resources>

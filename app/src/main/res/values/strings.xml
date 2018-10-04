@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">ReposCodeTest</string>
+    <string name="app_name">ReposCodingTest App</string>
+    <string name="tv_title_trending_repos">Trending Github Repos</string>
+    <string name="searchable_hint_trending_repos">Search</string>
 </resources>
