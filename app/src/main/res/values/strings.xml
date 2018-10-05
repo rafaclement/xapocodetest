@@ -1,7 +1,21 @@
 <resources>
     <string name="app_name">ReposCodingTest App</string>
     <string name="tv_title_trending_repos">Trending Github Repos</string>
+    <string name="tv_title_trending_sigle_repo">detail:</string>
+    <string name="repoDetailOwner">Owner:</string>
+    <string name="repoDetailPrivate">Private:</string>
+    <string name="repoDetailDescription">Description:</string>
+    <string name="repoDetailCreatedAt">Created:</string>
+    <string name="repoDetailUpdatedAt">Last update:</string>
+    <string name="repoDetailFork">Forks:</string>
+    <string name="repoDetailUrl">URL:</string>
+    <string name="repoDetailIsuesCount">Issues:</string>
+    <string name="repoDetailScore">Score:</string>
+    <string name="repoDetailDefaultBranch">Default branch:</string>
+
+
     <string name="searchable_hint_trending_repos">Search</string>
+    <string name="empty">-</string>
     <string name="error400">There was an error during the connection</string>
     <string name="error500">Server error. Please contact admin</string>
 

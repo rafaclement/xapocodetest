@@ -2,27 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/row_height"
-    android:id="@+id/ll_repo_item">
-    
-    <ImageView
-        android:layout_width="@dimen/row_image"
-        android:layout_height="@dimen/row_image"
-        android:src="@drawable/repos"
-        android:layout_gravity="center_vertical"
-        android:padding="@dimen/pdng_imgs"/>
+    android:layout_height="wrap_content">
+
     <TextView
-        android:id="@+id/tv_repo_name_item_list"
-        android:layout_width="match_parent"
+        android:id="@+id/tv_repo_key_item_list"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/row_height"
         android:gravity="center_vertical"
         android:textSize="@dimen/row_text_size"
         android:padding="@dimen/pdng_imgs"/>
 
     <TextView
-        android:id="@+id/tv_user_name_item_list"
+        android:id="@+id/tv_repo_value_item_list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/row_height"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:gravity="center_vertical"
         android:textSize="@dimen/row_text_size"

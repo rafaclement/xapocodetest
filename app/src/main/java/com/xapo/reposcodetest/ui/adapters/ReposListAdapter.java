@@ -1,14 +1,17 @@
 package com.xapo.reposcodetest.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 
 import com.xapo.reposcodetest.R;
 import com.xapo.reposcodetest.network.pojos.Item;
+import com.xapo.reposcodetest.ui.main.TrendingRepoDetailActivity;
 import com.xapo.reposcodetest.ui.viewholders.RepoViewHolder;
 
 import java.util.ArrayList;
@@ -44,13 +47,24 @@ public class ReposListAdapter extends RecyclerView.Adapter<RepoViewHolder> imple
 
     @Override
     public RepoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RepoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repo_list_layout, parent, false));
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_repo_list_layout, parent, false);
+        return new RepoViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RepoViewHolder holder, int position) {
         final Item repo = mReposFiltred.get(position);
         holder.getRepoName().setText(repo.getName());
+        holder.getParent().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentDetail = new Intent(mContext, TrendingRepoDetailActivity.class);
+                intentDetail.putExtra("item", repo);
+                mContext.startActivity(intentDetail);
+            }
+        });
+
+
     }
 
     @Override

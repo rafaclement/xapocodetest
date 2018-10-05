@@ -102,7 +102,8 @@ public class TrendingReposActivity extends Activity {
         Map<String, String> params = new HashMap<>();
         params.put("sort", "stars");
         params.put("order", "desc");
-        params.put("q", "language:java");
+        params.put("q", "language:kotlin" +
+                "");
 
         Call<RepoFeed> call = restClient.getData(params);
         call.enqueue(new Callback<RepoFeed>() {
