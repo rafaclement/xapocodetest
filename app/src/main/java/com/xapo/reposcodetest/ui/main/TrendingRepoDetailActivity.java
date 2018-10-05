@@ -46,6 +46,11 @@ public class TrendingRepoDetailActivity extends Activity {
     }
 
     private List<Tuple> setDataOfSingleRepo(){
+
+        //To add new values on the detail view:
+        // 1) Add the resource name as a string in the string resources file
+        // 2) Add a new tuple to the list containing string (name) and string (value) to display
+        
         TextView tvSingleRepoName = (TextView) findViewById(R.id.tv_title_sigle_trending_repo_name);
         tvSingleRepoName.setText(mSingle_repo.getName() + " ");
 
